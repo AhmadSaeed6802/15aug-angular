@@ -1,0 +1,55 @@
+<!-- <p>to-dos works!</p> -->
+
+<!-- <ul *ngFor="let Todo of todoshere">
+    <li>{{Todo.sno}}-{{Todo.title}}-{{Todo.desc}}</li>
+</ul> -->
+<h1 class="text-center">Welcome To Todos List</h1>
+<div class="container" >
+  <app-add-tod (todoAdd)="addTodo($event)"></app-add-tod>
+  <h4>Your Todos</h4>
+  <!-- <p>{{ todos}}</p> -->
+  <div *ngIf="this.todoshere.length === 0; else NonEmpty">
+    <h3 style="color: rgb(246, 4, 4);">No Todos to display</h3>
+  </div>
+  <ng-template #NonEmpty >
+    //-----------------------------------------------------------------------------
+
+
+<div cdkDropListGroup class="row">
+  <div class="example-container"class="col-md-6">
+    <h2>To do</h2>
+
+    <div
+      cdkDropList
+      [cdkDropListData]="todoshere"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)">
+      <div class="example-box" *ngFor="let Todo of todoshere" cdkDrag>
+        <app-todo-item [Todo]="Todo"  (todoDelete)="deleteTodo($event)"  (todoCheckbox)="toggleTodo($event)">
+        </app-todo-item>
+      </div>
+    </div>
+  </div>
+
+  <div class="example-container" class="col-md-6" >
+    <h2>Done</h2>
+
+    <div
+      cdkDropList
+      [cdkDropListData]="todosheredone"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)">
+      <div class="example-box" *ngFor="let Todo of todosheredone" cdkDrag>
+        <app-todo-item [Todo]="Todo"  (todoDelete)="deleteTodo($event)"  (todoCheckbox)="toggleTodo($event)">
+      </app-todo-item>
+    </div>
+    </div>
+  </div>
+</div>
+
+   
+  </ng-template>
+</div>
+
+
+
